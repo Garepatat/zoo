@@ -35,3 +35,33 @@ Bij elke command laat je het resultaat in de console  zien.
 - Als je de [give leaves] command uitvoert krijgen alle herbivores leaves.
 - Als je de [give meat] command uitvoert krijgen alle carnivores meat.
 - Als je de [perform trick] command uitvoert doen alle dieren die dat kunnen hun trucje.
+
+
+
+## Uitwerking
+
+### Projectstructuur
+    De code is opgesplitst in overzichtelijke packages:
+    - `com.ing.zoo` – `Zoo.java` (startpunt van de applicatie en verwerking van console-commando's)
+    - `com.ing.zoo.animals` – abstracte basisklasse `Animal` en alle dierklassen
+    - `com.ing.zoo.interfaces` – interfaces voor diergedrag (`Herbivore`, `Carnivore`, `TrickPerformer`)
+
+    ### Class structure & gemaakte keuzes
+    - **`Animal` (abstracte klasse):** Alle dieren delen een `name` (via de constructor) en de methode `sayHello()`. Velden zijn `private` gemaakt voor betere encapsulatie.
+    - **Interfaces voor gedrag:** Omdat een dier meerdere eigenschappen kan hebben (zoals `Pig`, die zowel vlees als bladeren eet én trucjes kan), is gekozen voor aparte interfaces: `Herbivore`, `Carnivore` en `TrickPerformer`. Hierdoor kan een       
+    `Zebra` bijvoorbeeld alleen `eatLeaves()` uitvoeren en is `eatMeat()` niet aanroepbaar op een `Zebra`.
+    - **Collectie:** Alle dieren staan in één `List<Animal>`, waardoor commando's eenvoudig over alle dieren heen kunnen loopen.
+
+    ### Toegevoegde dieren
+    - **`Elephant` (dumbo):** `Herbivore` en `TrickPerformer`
+    - **`Seal` (sammy):** `Carnivore` en `TrickPerformer`
+
+    ### Beschikbare commando's
+    | Commando | Beschrijving |
+    |---|---|
+    | `hello` | Alle dieren zeggen hallo |
+    | `hello <naam>` | Alleen het gekozen dier zegt hallo (bijv. `hello henk`) |
+    | `give leaves` | Alle herbivores eten bladeren |
+    | `give meat` | Alle carnivores eten vlees |
+    | `perform trick` | Alle dieren die trucjes kunnen voeren er één uit |
+    | `exit` | Sluit de applicatie af |
